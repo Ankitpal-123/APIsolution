@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Metal Prices</title>
+  </head>
+  <body>
+    <h1>Metal Prices</h1>
+    <p>Gold (XAU): <span id="goldPrice"></span></p>
+    <p>Silver (XAG): <span id="silverPrice"></span></p>
+    <p>Platinum (PL): <span id="platinumPrice"></span></p>
+    <p>Palladium (PA): <span id="palladiumPrice"></span></p>
+
+    <script>
+      // Function to fetch JSON data and update the HTML
+      function fetchAndDisplayData() {
+        fetch("data.json")
+          .then((response) => response.json())
+          .then((data) => {
+            const goldPrice = data.metals.gold;
+            const silverPrice = data.metals.silver;
+            const platinumPrice = data.metals.platinum;
+            const palladiumPrice = data.metals.palladium;
+
+            document.getElementById("goldPrice").textContent = goldPrice;
+            document.getElementById("silverPrice").textContent = silverPrice;
+            document.getElementById("platinumPrice").textContent =
+              platinumPrice;
+            document.getElementById("palladiumPrice").textContent =
+              palladiumPrice;
+          })
+          .catch((error) => console.error("Error fetching data:", error));
+      }
+
+      // Call the function to fetch and display data when the page loads
+      window.onload = fetchAndDisplayData;
+    </script>
+  </body>
+</html>
